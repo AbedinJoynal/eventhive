@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { bookingService } from './booking.service';
+import sendResponse from '../../utils/send-response';
 
 const bookEventTickets = async (req: Request, res: Response) => {
     const result = await bookingService.bookEventTickets(
@@ -7,8 +8,8 @@ const bookEventTickets = async (req: Request, res: Response) => {
         req.user!.id,
     );
 
-    res.status(201).json({
-        success: true,
+    sendResponse(res, {
+        statusCode: 201,
         message: 'Tickets booked successfully',
         data: result,
     });
@@ -17,8 +18,8 @@ const bookEventTickets = async (req: Request, res: Response) => {
 const getUserBookings = async (req: Request, res: Response) => {
     const result = await bookingService.getUserBookings(req.user!.id);
 
-    res.status(200).json({
-        success: true,
+    sendResponse(res, {
+        statusCode: 200,
         message: 'Bookings retrieved successfully',
         data: result,
     });
@@ -30,8 +31,8 @@ const cancelBooking = async (req: Request, res: Response) => {
         req.user!.id,
     );
 
-    res.status(200).json({
-        success: true,
+    sendResponse(res, {
+        statusCode: 200,
         message: 'Booking cancelled successfully',
         data: result,
     });
