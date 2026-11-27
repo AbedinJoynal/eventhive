@@ -13,20 +13,20 @@ EventHive is an API for community events and ticket bookings. Attendees can brow
 You’ll need Node.js 22 or 24, npm, and a PostgreSQL database such as Neon.
 
 1. Install dependencies: `npm install`
-2. Create `.env` in the project root using the example below. Replace the first two values with your Neon connection string and a long random secret.
+2. Copy `.env.example` to `.env` in the project root, then replace the placeholders with your Neon connection string and a long random JWT secret.
 3. Start the development server: `npm run dev`
 
 The server creates the `users`, `events`, and `bookings` tables when it starts. The database user needs permission to create tables.
 
 ### Environment example
 
-Keep real credentials in `.env` only. Use placeholders in this example; don’t commit secrets.
+Start with the [`.env.example`](.env.example) file. Keep real credentials in `.env` only; don’t commit secrets.
 
 ```env
 DATABASE_URL=your_neon_connection_string
-JWT_SECRET=your_random_secret
-JWT_EXPIRES_IN=7d
-PORT=5000
+JWT_SECRET=replace_with_a_long_random_secret
+JWT_EXPIRES_IN=your_expiry_date
+PORT=desired_port
 ```
 
 ## Build and deploy
