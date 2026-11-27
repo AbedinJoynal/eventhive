@@ -1,7 +1,7 @@
 # EventHive API
 
-**Live API:** Add the public deployment URL after deployment.
-**Interview video:** Add your public Google Drive or unlisted YouTube link.
+**Live API:** [https://eventhive-alpha.vercel.app](https://eventhive-alpha.vercel.app)
+**Interview video:** [Watch the interview video](https://drive.google.com/file/d/1QLfc4ks1BIoEgYU3LNamUYz7DmntEwpQ/view?usp=sharing)
 
 EventHive is an API for community events and ticket bookings. Attendees can browse events and manage bookings. Organizers can create and manage their own events.
 
@@ -38,12 +38,10 @@ npm run build
 vercel --prod
 ```
 
-After deploying, add the public URL above. Add your interview video link before submitting.
-
 ## API
 
 Local base URL: `http://localhost:5000`
-Production base URL: `https://YOUR-VERCEL-DEPLOYMENT.vercel.app`
+Production base URL: `https://eventhive-alpha.vercel.app`
 
 All paths below start with `/api/v1`.
 
