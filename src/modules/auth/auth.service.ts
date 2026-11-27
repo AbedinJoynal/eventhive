@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import jwt, { type SignOptions } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import config from '../../config/env';
 import AppError from '../../utils/app-error';
 import { authRepository } from './auth.repository';
@@ -180,9 +180,7 @@ const loginUserIntoDB = async (value: unknown) => {
         },
         config.jwt_secret,
         {
-            expiresIn: config.jwt_expires_in as NonNullable<
-                SignOptions['expiresIn']
-            >,
+            expiresIn: config.jwt_expires_in,
         },
     );
 

@@ -29,7 +29,7 @@ const getSingleEvent = async (req: Request, res: Response) => {
 
     sendResponse(res, {
         statusCode: 200,
-        message: 'Event retrieved successfully',
+        message: 'Event found successfully',
         data: result,
     });
 };
