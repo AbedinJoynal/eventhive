@@ -29,7 +29,7 @@ const getSingleEvent = async (req: Request, res: Response) => {
 
     sendResponse(res, {
         statusCode: 200,
-        message: 'Event found successfully',
+        message: 'Event retrieved successfully',
         data: result,
     });
 };
@@ -39,6 +39,7 @@ const updateEvent = async (req: Request, res: Response) => {
         req.params.id,
         req.body,
         req.user!.id,
+        req.user!.role
     );
 
     sendResponse(res, {
@@ -49,7 +50,7 @@ const updateEvent = async (req: Request, res: Response) => {
 };
 
 const deleteEvent = async (req: Request, res: Response) => {
-    await eventService.deleteEvent(req.params.id, req.user!.id);
+    await eventService.deleteEvent(req.params.id, req.user!.id,req.user!.role);
 
     sendResponse(res, {
         statusCode: 200,

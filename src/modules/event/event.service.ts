@@ -1,5 +1,7 @@
 import AppError from '../../utils/app-error';
 import { eventRepository } from './event.repository';
+import { USER_ROLE } from '../../types';
+import type { Role } from '../../types';
 
 const parseEventId = (id: string | string[] | undefined) => {
     const eventId = typeof id === 'string' ? Number(id) : Number.NaN;
@@ -162,6 +164,7 @@ const updateEvent = async (
         price?: number;
     },
     organizerId: number,
+    userRole: Role,
 ) => {
     const eventId = parseEventId(id);
     const event = await eventRepository.getEventById(eventId);
@@ -170,7 +173,10 @@ const updateEvent = async (
         throw new AppError(404, 'Event not found');
     }
 
-    if (event.organizer_id !== organizerId) {
+    if (
+        userRole !== USER_ROLE.organizer ||
+        event.organizer_id !== organizerId
+    ) {
         throw new AppError(
             403,
             'You do not have permission to update this event',
@@ -340,6 +346,7 @@ const updateEvent = async (
 const deleteEvent = async (
     id: string | string[] | undefined,
     organizerId: number,
+    userRole: Role,
 ) => {
     const eventId = parseEventId(id);
     const event = await eventRepository.getEventById(eventId);
@@ -348,7 +355,10 @@ const deleteEvent = async (
         throw new AppError(404, 'Event not found');
     }
 
-    if (event.organizer_id !== organizerId) {
+    if (
+        userRole !== USER_ROLE.organizer ||
+        event.organizer_id !== organizerId
+    ) {
         throw new AppError(
             403,
             'You do not have permission to delete this event',
