@@ -18,6 +18,26 @@ const errorHandler = (
         return;
     }
 
+    if (
+        err instanceof SyntaxError &&
+        'status' in err &&
+        err.status === 400 &&
+        'type' in err &&
+        err.type === 'entity.parse.failed'
+    ) {
+        res.status(400).json({
+            success: false,
+            message: 'Validation Error',
+            errors: [
+                {
+                    field: 'body',
+                    message: 'Request body contains invalid JSON',
+                },
+            ],
+        });
+        return;
+    }
+
     res.status(500).json({
         success: false,
         message: 'Internal Server Error',
