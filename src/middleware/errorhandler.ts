@@ -3,8 +3,8 @@ import AppError from '../utils/app-error';
 
 const errorHandler = (
     err: any,
-    res: Response,
     req: Request,
+    res: Response,
     next: NextFunction,
 ) => {
     console.error(err.stack);
